@@ -1,10 +1,10 @@
 {
   "name": "clairvoyance",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/sinsoku/clairvoyance/issues"
   },
-  "homepage": "https://github.com/sinsoku/clairvoyance#readme"
+  "homepage": "https://github.com/sinsoku/clairvoyance#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "css": "^2.2.1",
+    "phantom": "^0.8.4"
+  },
+  "bin": {
+    "clairvoyance": "./bin/clairvoyance"
+  },
+  "devDependencies": {
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^2.3.4",
+    "power-assert": "^1.2.0"
+  }
 }

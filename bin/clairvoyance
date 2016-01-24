@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var program = require('commander'),
+    package = require('../package.json');
+
+program
+  .version(package.version)
+  .option('--css <path>', 'specify css path')
+  .option('--html <path>', 'specify html path')
+  .parse(process.argv);
+
+var cli = require('../').cli;
+cli.start(program);
