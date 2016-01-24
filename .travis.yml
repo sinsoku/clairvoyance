@@ -6,3 +6,5 @@ before_install:
   - "npm install -g codecov"
 script:
   - "npm test && codecov"
+notifications:
+  email: false
