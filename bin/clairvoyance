@@ -13,5 +13,5 @@ program
   .option('--html <path>', 'specify html path')
   .parse(process.argv);
 
-var cli = require('../').cli;
+var cli = require('../lib/cli');
 cli.start(program);

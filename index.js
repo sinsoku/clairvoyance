@@ -1,4 +1,1 @@
-module.exports = {
-  "Clairvoyance": require('./lib/clairvoyance'),
-  "cli": require('./lib/cli')
-};
+module.exports = require('./lib/clairvoyance');
