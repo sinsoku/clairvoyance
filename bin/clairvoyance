@@ -1,17 +1,29 @@
 #!/usr/bin/env node
 
 var program = require('commander'),
-    package = require('../package.json');
+    package = require('../package.json'),
+    Clairvoyance = require('../'),
+    jsonReporter = require('../lib/reporters/json');
 
 if (process.argv.length < 3) {
   process.argv.push('--help');
+}
+
+function appendReporter(v, reporters) {
+  reporters.push(require(v));
+  return reporters;
 }
 
 program
   .version(package.version)
   .option('--css <path>', 'specify css path')
   .option('--html <path>', 'specify html path')
+  .option('-R, --reporter <name>', 'append the reporter', appendReporter, [jsonReporter])
   .parse(process.argv);
 
-var cli = require('../lib/cli');
-cli.start(program);
+var parser = new Clairvoyance({
+  css: program.css,
+  html: program.html,
+  reporters: program.reporter
+});
+parser.run();
