@@ -1,7 +1,7 @@
 {
   "name": "clairvoyance",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "A css code coverage tool",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha"
