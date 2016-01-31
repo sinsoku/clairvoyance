@@ -16,6 +16,38 @@ Run as follow:
 
     $ clairvoyance --css path/app.css --html path/index.html
 
+And this will write a coverage file to `coverage/css-coverage.json`.
+
+## Usage
+
+```
+Usage: clairvoyance [options]
+
+Options:
+
+  -h, --help             output usage information
+  -V, --version          output the version number
+  --css <path>           specify css path
+  --html <path>          specify html path
+  -R, --reporter <name>  append the reporter
+```
+
+### -R, --reporter
+
+The --reporter option allows you to append the reporter. For example, you append the [clairvoyance-html](https://github.com/sinsoku/clairvoyance-html) to generate a html report.
+
+    $ clairvoyance --css path/app.css --html path/index.html --reporter clairvoyance-html
+
+Then, you will get a html report like below:
+
+![](https://raw.github.com/sinsoku/clairvoyance-html/master/doc/images/index.png)
+
+**source code view**:
+
+![](https://raw.github.com/sinsoku/clairvoyance-html/master/doc/images/source.png)
+
+
+
 ## API
 
 ```js
