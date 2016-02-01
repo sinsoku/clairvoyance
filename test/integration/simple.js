@@ -12,6 +12,9 @@ describe("JSON report", function() {
         var expected = "Coverage report generated to coverage/css-coverage.json\n";
         assert.equal(data.toString(), expected);
       });
+      bin.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+      });
       bin.on("close", function(code) {
         assert.equal(code, 0);
         fs.stat("coverage/css-coverage.json", function(err) {
