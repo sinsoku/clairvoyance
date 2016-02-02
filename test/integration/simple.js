@@ -1,6 +1,6 @@
 require('../helper');
-var fs = require('fs'),
-    spawn = require('child_process').spawn;
+var fs = require('fs');
+var spawn = require('child_process').spawn;
 
 describe('JSON report', function() {
   it('write a json file to coverage/css-coverage.json', function(done) {
