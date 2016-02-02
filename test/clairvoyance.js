@@ -1,17 +1,17 @@
 require('./helper');
 
 describe('Clairvoyance', function() {
-  describe("#run", function() {
-    it("call a function with result", function(done) {
+  describe('#run', function() {
+    it('call a function with result', function(done) {
       this.timeout(10000);
 
       var parser = new Clairvoyance({
-        css: "test/examples/simple/app.css",
-        html: "test/examples/simple/index.html"
+        css: 'test/examples/simple/app.css',
+        html: 'test/examples/simple/index.html'
       });
       parser.run(function(result) {
         var fileName = Object.keys(result)[0];
-        assert(fileName.match("test/examples/simple/app.css"));
+        assert(fileName.match('test/examples/simple/app.css'));
         done();
       });
     });
