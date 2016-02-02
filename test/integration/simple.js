@@ -8,11 +8,11 @@ describe('JSON report', function() {
 
     fs.unlink('coverage/css-coverage.json', function() {
       var bin = spawn('bin/clairvoyance', ['--css', 'test/examples/simple/app.css', '--html', 'test/examples/simple/index.html']);
-      bin.stdout.on('data', function (data) {
+      bin.stdout.on('data', function(data) {
         var expected = 'Coverage report generated to coverage/css-coverage.json\n';
         assert.equal(data.toString(), expected);
       });
-      bin.stderr.on('data', function (data) {
+      bin.stderr.on('data', function(data) {
         console.log('stderr: ' + data);
       });
       bin.on('close', function(code) {
