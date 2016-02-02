@@ -3,6 +3,8 @@ require('./helper')
 describe('Clairvoyance', function() {
   describe("#run", function() {
     it("call a function with result", function(done) {
+      this.timeout(10000);
+
       var parser = new Clairvoyance({
         css: "test/examples/simple/app.css",
         html: "test/examples/simple/index.html"
