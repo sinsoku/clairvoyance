@@ -1,4 +1,4 @@
-require('./helper')
+require('./helper');
 
 describe('Clairvoyance', function() {
   describe("#run", function() {

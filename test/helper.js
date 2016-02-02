@@ -8,4 +8,4 @@ global.jsonReporter = require('../lib/reporters/json');
 
 global.eq = function(value) {
   return function(x) { return x === value; };
-}
+};

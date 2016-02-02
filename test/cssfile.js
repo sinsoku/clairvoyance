@@ -1,4 +1,4 @@
-require('./helper')
+require('./helper');
 
 describe('CssFile', function() {
   beforeEach(function() {

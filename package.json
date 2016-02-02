@@ -9,7 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint lib test",
+    "lint": "eslint lib/ test/",
     "test": "istanbul cover _mocha"
   },
   "repository": {
