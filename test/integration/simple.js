@@ -1,4 +1,4 @@
-require('../helper');
+var assert = require('power-assert');
 var fs = require('fs');
 var spawn = require('child_process').spawn;
 

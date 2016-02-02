@@ -1,4 +1,5 @@
-require('./helper');
+var assert = require('power-assert');
+var explorer = require('../lib/explorer');
 
 describe('explorer', function() {
   describe('#findCssFiles', function() {

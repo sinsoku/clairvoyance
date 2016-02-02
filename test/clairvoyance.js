@@ -1,4 +1,5 @@
-require('./helper');
+var assert = require('power-assert');
+var Clairvoyance = require('../lib/clairvoyance');
 
 describe('Clairvoyance', function() {
   describe('#run', function() {
