@@ -1,4 +1,11 @@
-require('./helper')
+var assert = require('power-assert');
+var CssFile = require('../lib/cssfile');
+
+function eq(value) {
+  return function(x) {
+    return x === value;
+  };
+}
 
 describe('CssFile', function() {
   beforeEach(function() {

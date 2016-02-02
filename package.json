@@ -9,6 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "lint": "eslint lib/ test/",
     "test": "istanbul cover _mocha"
   },
   "repository": {
@@ -30,6 +31,8 @@
     "clairvoyance": "./bin/clairvoyance"
   },
   "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-google": "^0.3.0",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
