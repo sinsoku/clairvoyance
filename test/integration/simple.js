@@ -3,27 +3,37 @@ var fs = require('fs');
 var spawn = require('child_process').spawn;
 
 describe('JSON report', function() {
-  it('write a json file to coverage/css-coverage.json', function(done) {
+  it('write a json file to coverage/css-coverage.json', function() {
     this.timeout(10000);
+    var args = [
+      '--css', 'test/examples/simple/app.css',
+      '--html', 'test/examples/simple/index.html'
+    ];
+    var filepath = 'coverage/css-coverage.json';
 
-    fs.unlink('coverage/css-coverage.json', function() {
-      var bin = spawn('bin/clairvoyance', ['--css', 'test/examples/simple/app.css', '--html', 'test/examples/simple/index.html']);
-      bin.stdout.on('data', function(data) {
-        var expected = 'Coverage report generated to coverage/css-coverage.json\n';
-        assert.equal(data.toString(), expected);
+    return new Promise(function(resolve) {
+      fs.unlink(filepath, resolve);
+    }).then(function() {
+      return new Promise(function(resolve) {
+        var bin = spawn('bin/clairvoyance', args);
+        bin.stdout.on('data', function(data) {
+          var expected = 'Coverage report generated to ' + filepath + '\n';
+          assert(data.toString() === expected);
+        });
+        bin.on('close', function(code) {
+          assert(code === 0);
+          resolve();
+        });
       });
-      bin.stderr.on('data', function(data) {
-        console.log('stderr: ' + data);
-      });
-      bin.on('close', function(code) {
-        assert.equal(code, 0);
-        fs.stat('coverage/css-coverage.json', function(err) {
-          assert.equal(err, null);
-          var content = fs.readFileSync('coverage/css-coverage.json').toString();
+    }).then(function() {
+      return new Promise(function(resolve) {
+        fs.stat(filepath, function(err) {
+          assert(err === null);
+          var content = fs.readFileSync(filepath).toString();
           var json = JSON.parse(content);
           var fileName = Object.keys(json)[0];
           assert(fileName.match('test/examples/simple/app.css'));
-          done();
+          resolve();
         });
       });
     });
