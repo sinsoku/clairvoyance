@@ -1,3 +1,5 @@
+/* eslint require-jsdoc: 0 */
+
 var assert = require('power-assert');
 var CssFile = require('../lib/cssfile');
 
