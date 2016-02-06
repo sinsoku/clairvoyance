@@ -1,5 +1,7 @@
 ## master (unreleased)
 
+## v0.4.0
+
 - Refactor codes using Promise
 - Fix linting errors and warnings
 - Async css file reading
