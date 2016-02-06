@@ -1,6 +1,7 @@
 /* eslint require-jsdoc: 0 */
 
 var assert = require('power-assert');
+var fs = require('fs');
 var CssFile = require('../lib/cssfile');
 
 function eq(value) {
@@ -12,6 +13,8 @@ function eq(value) {
 describe('CssFile', function() {
   beforeEach(function() {
     this.css = new CssFile('test/examples/simple/app.css');
+    var data = fs.readFileSync(this.css.path);
+    this.css._initByContent(data.toString());
   });
 
   describe('#constructor', function() {
