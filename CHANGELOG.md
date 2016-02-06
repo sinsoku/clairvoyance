@@ -2,6 +2,7 @@
 
 - Refactor codes using Promise
 - Fix linting errors and warnings
+- Async css file reading
 
 ## v0.3.1
 
