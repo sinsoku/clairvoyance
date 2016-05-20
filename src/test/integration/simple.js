@@ -6,8 +6,8 @@ describe('JSON report', function() {
   it('write a json file to coverage/css-coverage.json', function() {
     this.timeout(10000);
     var args = [
-      '--css', 'test/examples/simple/app.css',
-      '--html', 'test/examples/simple/index.html'
+      '--css', 'examples/simple/app.css',
+      '--html', 'examples/simple/index.html'
     ];
     var filepath = 'coverage/css-coverage.json';
 
@@ -32,7 +32,7 @@ describe('JSON report', function() {
           var content = fs.readFileSync(filepath).toString();
           var json = JSON.parse(content);
           var fileName = Object.keys(json)[0];
-          assert(fileName.match('test/examples/simple/app.css'));
+          assert(fileName.match('examples/simple/app.css'));
           resolve();
         });
       });

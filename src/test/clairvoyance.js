@@ -7,12 +7,12 @@ describe('Clairvoyance', function() {
       this.timeout(10000);
 
       var parser = new Clairvoyance({
-        css: 'test/examples/simple/app.css',
-        html: 'test/examples/simple/index.html'
+        css: 'examples/simple/app.css',
+        html: 'examples/simple/index.html'
       });
       parser.run(function(result) {
         var fileName = Object.keys(result)[0];
-        assert(fileName.match('test/examples/simple/app.css'));
+        assert(fileName.match('examples/simple/app.css'));
         done();
       });
     });
