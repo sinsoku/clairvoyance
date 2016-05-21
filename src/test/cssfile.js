@@ -12,7 +12,7 @@ function eq(value) {
 
 describe('CssFile', function() {
   beforeEach(function() {
-    this.css = new CssFile('test/examples/simple/app.css');
+    this.css = new CssFile('examples/simple/app.css');
     var data = fs.readFileSync(this.css.path);
     this.css._initByContent(data.toString());
   });

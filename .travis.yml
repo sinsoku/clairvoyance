@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-  - "0.12"
-  - "4.2"
   - "stable"
-before_install:
-  - "npm install -g codecov"
-script:
-  - "npm run -s lint && npm test && codecov"
+  - "6"
+  - "5"
+  - "4"
+  - "0.12"
 notifications:
   email: false
