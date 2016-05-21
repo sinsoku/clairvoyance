@@ -3,9 +3,5 @@ node_js:
   - "0.12"
   - "4.2"
   - "stable"
-before_install:
-  - "npm install -g codecov"
-script:
-  - "npm test && codecov"
 notifications:
   email: false
