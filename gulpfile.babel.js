@@ -35,7 +35,7 @@ gulp.task('pre-test', ['build:test'], () => {
 
 gulp.task('test', ['pre-test'], () => {
   return gulp.src(['test/**/*.js'])
-    .pipe(mocha())
+    .pipe(mocha({ timeout: 10000 }))
     .pipe(istanbul.writeReports())
     .pipe(istanbul.enforceThresholds({ thresholds: { global: 50 } }));
 });
