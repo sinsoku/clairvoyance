@@ -1,49 +1,5 @@
-var phantom = require('phantom');
-var explorer = require('./explorer');
-
-exports = module.exports = Clairvoyance;
-
-/**
- * Set up clairvoyance with `options`.
- * @param {Object} options -
- */
-function Clairvoyance(options) {
-  this.css = options.css;
-  this.html = options.html;
-  this.reporters = options.reporters || [];
-  this.result = {};
-}
-
-Clairvoyance.prototype.run = function(cb) {
-  if (cb) {
-    this.reporters.push(cb);
-  }
-
-  var _this = this;
-  Promise
-    .all([_createPhantom(this), _findCssFiles(this), _findHtmlFiles(this)])
-    .then(function() {
-      var tasks = [];
-
-      for (var html of _this.htmlFiles) {
-        for (var css of _this.cssFiles) {
-          tasks.push(html.findCss(_this.ph, css));
-        }
-      }
-
-      Promise.all(tasks).then(function() {
-        _this.ph.exit();
-
-        for (var css of _this.cssFiles) {
-          _this.result[css.path] = css.result;
-        }
-
-        for (var reporter of _this.reporters) {
-          reporter(_this.result);
-        }
-      });
-    });
-};
+import phantom from 'phantom';
+import explorer from './explorer';
 
 /**
  * @private
@@ -51,8 +7,8 @@ Clairvoyance.prototype.run = function(cb) {
  * @return {Promise} -
  */
 function _createPhantom(_this) {
-  return new Promise(function(resolve) {
-    phantom.create().then(function(ph) {
+  return new Promise(resolve => {
+    phantom.create().then(ph => {
       _this.ph = ph;
       resolve();
     });
@@ -65,11 +21,10 @@ function _createPhantom(_this) {
  * @return {Promise} -
  */
 function _findCssFiles(_this) {
-  return new Promise(function(resolve) {
+  return new Promise(resolve => {
     _this.cssFiles = explorer.findCssFiles(_this.css);
-    Promise.all(_this.cssFiles.map(function(css) {
-      return css.fetch();
-    })).then(resolve);
+    Promise.all(_this.cssFiles.map(css => css.fetch()))
+      .then(resolve);
   });
 }
 
@@ -79,8 +34,53 @@ function _findCssFiles(_this) {
  * @return {Promise} -
  */
 function _findHtmlFiles(_this) {
-  return new Promise(function(resolve) {
+  return new Promise(resolve => {
     _this.htmlFiles = explorer.findHtmlFiles(_this.html);
     resolve();
   });
 }
+
+/**
+ * Set up clairvoyance with `options`.
+ * @param {Object} options -
+ */
+class Clairvoyance {
+  constructor(options) {
+    this.css = options.css;
+    this.html = options.html;
+    this.reporters = options.reporters || [];
+    this.result = {};
+  }
+
+  run(cb) {
+    if (cb) {
+      this.reporters.push(cb);
+    }
+
+    Promise
+      .all([_createPhantom(this), _findCssFiles(this), _findHtmlFiles(this)])
+      .then(() => {
+        const tasks = [];
+
+        for (const html of this.htmlFiles) {
+          for (const css of this.cssFiles) {
+            tasks.push(html.findCss(this.ph, css));
+          }
+        }
+
+        Promise.all(tasks).then(() => {
+          this.ph.exit();
+
+          for (const css of this.cssFiles) {
+            this.result[css.path] = css.result;
+          }
+
+          for (const reporter of this.reporters) {
+            reporter(this.result);
+          }
+        });
+      });
+  }
+}
+
+exports = module.exports = Clairvoyance;
