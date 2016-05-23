@@ -1,41 +1,42 @@
-var assert = require('power-assert');
-var fs = require('fs');
-var spawn = require('child_process').spawn;
+import assert from 'power-assert';
+import fs from 'fs';
+import { spawn } from 'child_process';
 
-describe('JSON report', function() {
-  it('write a json file to coverage/css-coverage.json', function() {
-    this.timeout(10000);
-    var args = [
+describe('JSON report', () => {
+  it('write a json file to coverage/css-coverage.json', () => {
+    const args = [
       '--css', 'examples/simple/app.css',
-      '--html', 'examples/simple/index.html'
+      '--html', 'examples/simple/index.html',
     ];
-    var filepath = 'coverage/css-coverage.json';
+    const filepath = 'coverage/css-coverage.json';
 
-    return new Promise(function(resolve) {
+    return new Promise(resolve => {
       fs.unlink(filepath, resolve);
-    }).then(function() {
-      return new Promise(function(resolve) {
-        var bin = spawn('bin/clairvoyance', args);
-        bin.stdout.on('data', function(data) {
-          var expected = 'Coverage report generated to ' + filepath + '\n';
+    })
+    .then(() =>
+      new Promise(resolve => {
+        const bin = spawn('bin/clairvoyance', args);
+        bin.stdout.on('data', data => {
+          const expected = `Coverage report generated to ${filepath}\n`;
           assert(data.toString() === expected);
         });
-        bin.on('close', function(code) {
+        bin.on('close', code => {
           assert(code === 0);
           resolve();
         });
-      });
-    }).then(function() {
-      return new Promise(function(resolve) {
-        fs.stat(filepath, function(err) {
+      })
+    )
+    .then(() =>
+      new Promise(resolve => {
+        fs.stat(filepath, err => {
           assert(err === null);
-          var content = fs.readFileSync(filepath).toString();
-          var json = JSON.parse(content);
-          var fileName = Object.keys(json)[0];
+          const content = fs.readFileSync(filepath).toString();
+          const json = JSON.parse(content);
+          const fileName = Object.keys(json)[0];
           assert(fileName.match('examples/simple/app.css'));
           resolve();
         });
-      });
-    });
+      })
+    );
   });
 });

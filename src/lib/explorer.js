@@ -1,7 +1,7 @@
-var fs = require('fs');
-var path = require('path');
-var CssFile = require('./cssfile');
-var HtmlFile = require('./htmlfile');
+import fs from 'fs';
+import path from 'path';
+import CssFile from './cssfile';
+import HtmlFile from './htmlfile';
 
 /**
  * Search file paths.
@@ -10,15 +10,12 @@ var HtmlFile = require('./htmlfile');
  * @param {Array} result - found files after run
  */
 function walk(dir, result) {
-  var stat = fs.statSync(dir);
+  const stat = fs.statSync(dir);
 
   if (stat.isFile()) {
     result.push(dir);
   } else if (stat.isDirectory()) {
-    fs.readdirSync(dir).forEach(function(item) {
-      var fullpath = path.join(dir, item);
-      walk(fullpath, result);
-    });
+    fs.readdirSync(dir).forEach(item => walk(path.join(dir, item), result));
   }
 }
 
@@ -30,13 +27,11 @@ function walk(dir, result) {
  * @return {Array} -
  */
 function find(dir, options) {
-  var result = [];
+  const result = [];
   walk(dir, result);
 
   if (options.ext) {
-    return result.filter(function(f) {
-      return path.extname(f) === '.' + options.ext;
-    });
+    return result.filter(f => path.extname(f) === `.${options.ext}`);
   }
 
   return result;
@@ -49,10 +44,8 @@ function find(dir, options) {
  * @return {Array} -
  */
 function findCssFiles(dir) {
-  var files = find(dir, {ext: 'css'});
-  return files.map(function(f) {
-    return new CssFile(f);
-  });
+  const files = find(dir, { ext: 'css' });
+  return files.map(f => new CssFile(f));
 }
 
 /**
@@ -62,10 +55,8 @@ function findCssFiles(dir) {
  * @return {Array} -
  */
 function findHtmlFiles(dir) {
-  var files = find(dir, {ext: 'html'});
-  return files.map(function(f) {
-    return new HtmlFile(f);
-  });
+  const files = find(dir, { ext: 'html' });
+  return files.map(f => new HtmlFile(f));
 }
 
 exports.findCssFiles = findCssFiles;

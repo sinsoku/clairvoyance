@@ -1,17 +1,15 @@
-var assert = require('power-assert');
-var Clairvoyance = require('../lib/clairvoyance');
+import assert from 'power-assert';
+import Clairvoyance from '../lib/clairvoyance';
 
-describe('Clairvoyance', function() {
-  describe('#run', function() {
-    it('call a function with result', function(done) {
-      this.timeout(10000);
-
-      var parser = new Clairvoyance({
+describe('Clairvoyance', () => {
+  describe('#run', () => {
+    it('call a function with result', done => {
+      const parser = new Clairvoyance({
         css: 'examples/simple/app.css',
-        html: 'examples/simple/index.html'
+        html: 'examples/simple/index.html',
       });
-      parser.run(function(result) {
-        var fileName = Object.keys(result)[0];
+      parser.run(result => {
+        const fileName = Object.keys(result)[0];
         assert(fileName.match('examples/simple/app.css'));
         done();
       });
