@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import del from 'del';
 import eslint from 'gulp-eslint';
 import babel from 'gulp-babel';
+import sourcemaps from 'gulp-sourcemaps';
 import mocha from 'gulp-mocha';
 import istanbul from 'gulp-istanbul';
 
@@ -17,7 +18,9 @@ gulp.task('lint', () => {
 
 gulp.task('build', ['clean'], () => {
   return gulp.src('src/lib/**/*.js')
+    .pipe(sourcemaps.init())
     .pipe(babel())
+    .pipe(sourcemaps.write('../maps', { includeContent: false, sourceRoot: '../src/lib' }))
     .pipe(gulp.dest('lib'));
 });
 
