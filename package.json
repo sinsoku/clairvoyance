@@ -9,7 +9,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "gulp lint test"
+    "test": "gulp lint test remap-istanbul"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "power-assert": "^1.2.0"
+    "power-assert": "^1.2.0",
+    "remap-istanbul": "^0.6.4"
   }
 }

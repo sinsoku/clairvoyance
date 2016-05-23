@@ -5,6 +5,7 @@ import babel from 'gulp-babel';
 import sourcemaps from 'gulp-sourcemaps';
 import mocha from 'gulp-mocha';
 import istanbul from 'gulp-istanbul';
+import remapIstanbul from 'remap-istanbul/lib/gulpRemapIstanbul';
 
 
 gulp.task('clean', () => del(['lib/', 'test/']));
@@ -41,6 +42,18 @@ gulp.task('test', ['pre-test'], () => {
     .pipe(mocha({ timeout: 10000 }))
     .pipe(istanbul.writeReports())
     .pipe(istanbul.enforceThresholds({ thresholds: { global: 50 } }));
+});
+
+
+gulp.task('remap-istanbul', ['test'], function () {
+  return gulp.src('coverage/coverage-final.json')
+    .pipe(remapIstanbul({
+      reports: {
+        'json': 'coverage/coverage.json',
+        'html': 'coverage/lcov-report',
+        'lcovonly': 'coverage/lcov.info'
+      }
+    }));
 });
 
 gulp.task('default', ['lint', 'test']);
