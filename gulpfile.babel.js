@@ -8,7 +8,7 @@ import istanbul from 'gulp-istanbul';
 import remapIstanbul from 'remap-istanbul/lib/gulpRemapIstanbul';
 
 
-gulp.task('clean', () => del(['lib/', 'test/']));
+gulp.task('clean', () => del(['lib/', 'test/', 'maps/', 'coverage/']));
 
 gulp.task('lint', () => {
   return gulp.src('src/**/*.js')
