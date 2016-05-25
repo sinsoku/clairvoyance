@@ -1,5 +1,4 @@
-import assert from 'power-assert';
-import Clairvoyance from '../lib/clairvoyance';
+import { assert, Clairvoyance } from './helper';
 
 describe('Clairvoyance', () => {
   describe('#run', () => {
