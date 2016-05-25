@@ -48,6 +48,7 @@ gulp.task('test', ['pre-test'], () =>
 gulp.task('remap-istanbul', ['test'], () =>
   gulp.src('coverage/coverage-final.json')
     .pipe(remapIstanbul({
+      basePath: 'maps/',
       reports: {
         json: 'coverage/coverage.json',
         html: 'coverage/lcov-report',
