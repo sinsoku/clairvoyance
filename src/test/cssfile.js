@@ -1,6 +1,5 @@
-import assert from 'power-assert';
+import { assert, CssFile } from './helper';
 import fs from 'fs';
-import CssFile from '../lib/cssfile';
 
 function eq(value) {
   return x => x === value;

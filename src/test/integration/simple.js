@@ -1,4 +1,4 @@
-import assert from 'power-assert';
+import { assert } from '../helper';
 import fs from 'fs';
 import { spawn } from 'child_process';
 

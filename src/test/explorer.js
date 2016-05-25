@@ -1,5 +1,4 @@
-import assert from 'power-assert';
-import explorer from '../lib/explorer';
+import { assert, explorer } from './helper';
 
 describe('explorer', () => {
   describe('#findCssFiles', () => {
