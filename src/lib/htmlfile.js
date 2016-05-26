@@ -3,7 +3,7 @@
  * @constructor
  * @param {String} path - a file path
  */
-class HtmlFile {
+export default class HtmlFile {
   constructor(path) {
     this.path = path;
   }
@@ -40,5 +40,3 @@ class HtmlFile {
     return new Promise(resolve => Promise.all(tasks).then(resolve));
   }
 }
-
-module.exports = HtmlFile;

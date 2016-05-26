@@ -7,7 +7,7 @@ import css from 'css';
  * @constructor
  * @param {String} dir - a file path
  */
-class CssFile {
+export default class CssFile {
   constructor(dir) {
     this.path = path.resolve(dir);
   }
@@ -37,5 +37,3 @@ class CssFile {
     }
   }
 }
-
-module.exports = CssFile;

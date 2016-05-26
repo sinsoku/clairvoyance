@@ -59,5 +59,4 @@ function findHtmlFiles(dir) {
   return files.map(f => new HtmlFile(f));
 }
 
-exports.findCssFiles = findCssFiles;
-exports.findHtmlFiles = findHtmlFiles;
+export default { findCssFiles, findHtmlFiles };

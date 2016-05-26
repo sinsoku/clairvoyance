@@ -4,7 +4,7 @@ import fs from 'fs';
  * Write a coverage file.
  * @param {Object} result - coverage data
  */
-function parse(result) {
+export default function (result) {
   fs.mkdir('coverage', () => {
     const data = JSON.stringify(result);
     fs.writeFile('coverage/css-coverage.json', data);
@@ -12,5 +12,3 @@ function parse(result) {
     console.log('Coverage report generated to coverage/css-coverage.json');
   });
 }
-
-module.exports = parse;
