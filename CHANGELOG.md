@@ -1,5 +1,9 @@
 ## master (unreleased)
 
+- Update package
+  - phantom 0.8.4 -> 2.1.2
+- Convert js files to ES2015
+
 ## v0.4.0
 
 - Refactor codes using Promise
