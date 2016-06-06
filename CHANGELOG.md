@@ -1,6 +1,10 @@
 ## master (unreleased)
 
-## v0.4.1
+## v0.4.2
+
+- Fix the previous release
+
+## :bomb: v0.4.1
 
 - Update package
   - phantom 0.8.4 -> 2.1.2
