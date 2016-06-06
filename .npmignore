@@ -1,0 +1,5 @@
+coverage/
+maps/
+node_modules/
+src/
+test/
