@@ -9,7 +9,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "gulp lint test remap-istanbul"
+    "test": "gulp lint test remap-istanbul",
+    "prepublish": "gulp build"
   },
   "repository": {
     "type": "git",
